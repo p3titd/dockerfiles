@@ -9,4 +9,3 @@ RUN mkdir /db
 WORKDIR /
 
 ENTRYPOINT ["/go/bin/goose"]
-#CMD ["goose"]
