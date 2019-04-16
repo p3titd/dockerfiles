@@ -1,11 +1,18 @@
-FROM golang:alpine
+FROM alpine:latest
 
-RUN apk add --no-cache --virtual .build-deps build-base git \
-&& go get bitbucket.org/liamstask/goose/cmd/goose \
+RUN apk add --no-cache --virtual .build-deps build-base ca-certificates git go
+
+ENV GOPATH /go
+
+RUN go get bitbucket.org/liamstask/goose/cmd/goose
+
+RUN cp -pr /go/bin/goose /usr/bin
+
+RUN rm -rf /go \
 && apk del .build-deps
 
 RUN mkdir /db
 
-WORKDIR /
+WORKDIR /db
 
-ENTRYPOINT ["/go/bin/goose"]
+ENTRYPOINT ["/usr/bin/goose"]
