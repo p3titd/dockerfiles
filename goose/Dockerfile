@@ -1,6 +1,7 @@
 FROM alpine:latest
 
-RUN apk add --no-cache --virtual .build-deps build-base ca-certificates git go
+RUN apk add --no-cache ca-certificates
+&& apk add --no-cache --virtual .build-deps build-base git go
 
 ENV GOPATH /go
 
