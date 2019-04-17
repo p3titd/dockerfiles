@@ -10,6 +10,4 @@ RUN apk add --no-cache ca-certificates \
 && apk del .build-deps \
 && mkdir /db
 
-WORKDIR /db
-
 ENTRYPOINT ["/usr/bin/goose"]
